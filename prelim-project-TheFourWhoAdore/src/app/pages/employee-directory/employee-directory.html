@@ -1,0 +1,162 @@
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<main class="flex-1 flex flex-col items-center w-full px-6 py-10 lg:px-20 lg:py-16 !pb-0">
+  <div class="w-full max-w-[1400px] flex flex-col gap-10">
+    
+    <div class="flex flex-col items-center text-center gap-4 py-6">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-black font-display">
+        The Team
+      </h1>
+      <p class="text-gray-500 text-sm md:text-base font-normal tracking-wide max-w-xl mx-auto font-body">
+        Meet the artisans and professionals behind the Maison. A dedicated collective shaping the future of elegance.
+      </p>
+    </div>
+
+    <div class="w-full border-t border-b border-gray-100 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full md:w-auto pb-2 md:pb-0">
+          @for (dept of departments; track dept) {
+            <button 
+              (click)="selectDepartment(dept)"
+              [class.bg-black]="selectedDepartment() === dept"
+              [class.text-white]="selectedDepartment() === dept"
+              [class.bg-transparent]="selectedDepartment() !== dept"
+              [class.border-gray-200]="selectedDepartment() !== dept"
+              [class.border-black]="selectedDepartment() === dept"
+              class="filter-button whitespace-nowrap px-6 py-2 border text-xs font-bold uppercase tracking-widest hover:border-black transition-colors font-body">
+              {{ dept }}
+            </button>
+          }
+        </div>
+
+        <div class="flex items-center gap-2 ml-auto shrink-0 font-body relative">
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Sort By:</span>
+          
+          <button 
+            (click)="toggleSortDropdown()"
+            class="flex items-center gap-1 text-xs font-bold uppercase tracking-widest hover:text-gray-600 transition-colors">
+            {{ sortBy() }} 
+            <span class="material-symbols-outlined text-sm transition-transform duration-200"
+                  [class.rotate-180]="showSortDropdown()">
+              expand_more
+            </span>
+          </button>
+
+          @if (showSortDropdown()) {
+            <div class="absolute right-0 top-full mt-2 w-32 bg-white border border-gray-100 shadow-lg z-10">
+              @for (option of sortOptions; track option.value) {
+                <button 
+                  (click)="setSortBy(option.value)"
+                  class="block w-full text-left px-4 py-2 text-xs font-bold uppercase tracking-widest hover:bg-gray-50"
+                  [class.text-black]="sortBy() === option.value"
+                  [class.text-gray-500]="sortBy() !== option.value">
+                  {{ option.label }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+      @for (employee of filteredAndSortedEmployees(); track employee.employeeNumber) {
+        <div class="employee-card-wrapper animate-fade-in">
+          
+          <div class="group flex flex-col gap-4 cursor-pointer transition-all duration-300 hover:opacity-100 p-4 -m-4 rounded-sm hover:bg-white hover:ring-1 hover:ring-black hover:shadow-lg">
+            
+            <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+              @if (employee.imageUrl) {
+                <div 
+                  class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 employee-photo"
+                  [style.--bg-image]="'url(' + employee.imageUrl + ')'">
+                </div>
+              } @else {
+                <div class="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                  <span class="text-5xl text-gray-400 font-display">
+                    {{ employee.fullName.charAt(0) }}
+                  </span>
+                </div>
+              }
+              
+              <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-sm shadow-sm">
+                <a [href]="'mailto:' + employee.email" class="block h-5 w-5">
+                  <span class="material-symbols-outlined text-black text-xl leading-none">mail</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-center text-center gap-2 px-2">
+              <h3 class="text-xl font-medium text-black leading-tight font-display">
+                {{ employee.fullName }}
+              </h3>
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-500 mt-0.5 font-body">
+                {{ employee.jobTitle }}
+              </p>
+              
+              <div class="mt-2 flex items-center gap-2">
+                @if (employee.employmentStatus === 'Active') {
+                  <span class="block w-2 h-2 rounded-full bg-green-600"></span>
+                  <span class="text-[10px] text-gray-500 uppercase tracking-wider font-body">Active</span>
+                } @else if (employee.employmentStatus === 'On Leave') {
+                  <span class="block w-2 h-2 rounded-full bg-yellow-500"></span>
+                  <span class="text-[10px] text-gray-500 uppercase tracking-wider font-body">On Leave</span>
+                } @else {
+                  <span class="block w-2 h-2 rounded-full bg-red-500"></span>
+                  <span class="text-[10px] text-gray-500 uppercase tracking-wider font-body">Terminated</span>
+                }
+              </div>
+              
+              <div class="mt-3 pt-3 border-t border-gray-100 w-full flex flex-col gap-1.5 font-body">
+                <div class="flex justify-between items-center text-[9px] text-gray-400 uppercase tracking-wider">
+                  <span>ID:</span>
+                  <span class="text-gray-600 font-semibold">{{ employee.employeeNumber }}</span>
+                </div>
+                <div class="flex justify-between items-center text-[9px] text-gray-400 uppercase tracking-wider">
+                  <span>Gender:</span>
+                  <span class="text-gray-600 font-semibold">{{ employee.gender }}</span>
+                </div>
+                <div class="flex justify-between items-center text-[9px] text-gray-400 uppercase tracking-wider">
+                  <span>Email:</span>
+                  <span class="text-gray-600 font-semibold truncate max-w-[140px]">{{ employee.email }}</span>
+                </div>
+                <div class="flex justify-between items-center text-[9px] text-gray-400 uppercase tracking-wider">
+                  <span>Salary:</span>
+                  <span class="text-gray-600 font-semibold">${{ employee.salary | number:'1.0-0' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="col-span-full text-center py-12">
+          <p class="text-gray-500 font-body">No employees found in this department.</p>
+        </div>
+      }
+    </div>
+
+    <div 
+    class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-16 py-24 px-8 bg-cover bg-center border-t border-gray-200"
+    [style.background-image]="'url(' + bannerImage + ')'">
+    
+    <div class="w-full max-w-7xl mx-auto flex flex-col items-center gap-8 text-center">
+      
+      <blockquote class="text-3xl md:text-4xl font-display text-white max-w-2xl leading-snug">
+        "To achieve great things, we must first dream."
+      </blockquote>
+      
+      <p class="text-sm font-body tracking-wider text-gray-300 max-w-md">
+        Join the artisans, creators, and professionals continuing the legend.
+      </p>
+
+      <div class="mt-4">
+        <button 
+          class="px-10 py-4 text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-white hover:text-black transition-all duration-300 border border-white hover:border-black font-body">
+          JOIN US AT CHANEL
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>

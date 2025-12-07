@@ -1,0 +1,61 @@
+/* --- Font Families --- */
+.font-display {
+  font-family: serif;
+  font-style: italic; 
+}
+
+.font-body {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* --- Utilities --- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.employee-photo {
+  background-image: var(--bg-image);
+}
+
+/* --- Card Hover Effects --- */
+.group {
+  backface-visibility: hidden;
+  position: relative; 
+  z-index: 1;
+}
+
+.group:hover {
+  z-index: 10;
+}
+
+/* --- Animations --- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Simple fade in for dropdowns */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}

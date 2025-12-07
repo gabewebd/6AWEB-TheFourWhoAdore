@@ -1,0 +1,8 @@
+/* Header Styles */
+.layout-container {
+  width: 100%;
+}
+
+header {
+  background-color: white !important;
+}
