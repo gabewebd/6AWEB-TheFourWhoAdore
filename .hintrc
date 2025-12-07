@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "typescript-config/is-valid": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-font-feature-settings",
+          "scrollbar-width"
+        ]
+      }
+    ],
+    "no-inline-styles": "off"
+  }
+}
