@@ -11,7 +11,9 @@
           "-webkit-font-feature-settings",
           "scrollbar-width",
           "backdrop-filter",
-          "-webkit-mask"
+          "-webkit-mask",
+          "min-width: fit-content",
+          "-webkit-overflow-scrolling"
         ]
       }
     ],

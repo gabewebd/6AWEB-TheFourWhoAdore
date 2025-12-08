@@ -173,3 +173,24 @@
 .employee-card-wrapper.filtering-out {
   animation: fadeOut 0.3s ease-out forwards;
 }
+
+/* Mobile Filter Buttons */
+@media (max-width: 768px) {
+  .filter-button {
+    padding: 0.5rem 1rem;
+    min-width: fit-content;
+  }
+  
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  .overflow-x-auto {
+    scroll-snap-type: x proximity;
+  }
+  
+  .filter-button {
+    scroll-snap-align: start;
+  }
+}

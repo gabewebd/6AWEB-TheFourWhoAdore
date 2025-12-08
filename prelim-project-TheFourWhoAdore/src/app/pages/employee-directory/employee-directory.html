@@ -15,7 +15,7 @@
 
     <div class="w-full border-t border-b border-gray-100 py-6">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full md:w-auto pb-2 md:pb-0">
+        <div class="flex items-center gap-3 overflow-x-auto no-scrollbar w-full md:w-auto pb-2 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0">
           @for (dept of departments; track dept) {
             <button 
               (click)="selectDepartment(dept)"
@@ -24,7 +24,7 @@
               [class.bg-transparent]="selectedDepartment() !== dept"
               [class.border-gray-200]="selectedDepartment() !== dept"
               [class.border-black]="selectedDepartment() === dept"
-              class="filter-button whitespace-nowrap px-6 py-2 border text-xs font-bold uppercase tracking-widest hover:border-black transition-all duration-300 font-body">
+              class="filter-button flex-shrink-0 whitespace-nowrap px-4 py-2 border text-xs font-bold uppercase tracking-widest hover:border-black transition-all duration-300 font-body">
               {{ dept }}
             </button>
           }
