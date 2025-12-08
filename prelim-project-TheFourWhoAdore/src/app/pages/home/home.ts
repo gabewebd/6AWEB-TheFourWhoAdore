@@ -11,20 +11,20 @@ import { RouterLink } from '@angular/router';
 })
 export class Home implements AfterViewInit {
   
-  heroImage = 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=2069&auto=format&fit=crop';
+  heroImage = 'assets/home-chanel.jpg';
   scrollY = 0;
 
   collections = [
     {
       title: 'Ready-to-Wear',
       description: 'The freedom of movement.',
-      image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=1974&auto=format&fit=crop',
+      image: 'assets/ready-to-wear.jpg',
       link: '/products-services'
     },
     {
       title: 'Handbags',
       description: 'An extension of the silhouette.',
-      image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1935&auto=format&fit=crop',
+      image: 'assets/home-chanelhandbag.jpg',
       link: '/products-services'
     },
     {
@@ -40,7 +40,7 @@ export class Home implements AfterViewInit {
     title: 'The Spring-Summer 2025',
     subtitle: 'Haute Couture Collection',
     description: 'An ode to the freedom of movement and the elegance of the unexpected.',
-    image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop'
+    image: 'assets/spring-summer-2025.jpg'
   };
 
   values = [

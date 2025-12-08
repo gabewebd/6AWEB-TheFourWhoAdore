@@ -1,27 +1,51 @@
-/* Animation for entering elements */
-.fade-in-up {
-  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* 1. Base Animation Logic (The "Chanel" Smoothness) */
+:host {
+  display: block;
+}
+
+/* The element starts hidden and slightly lower */
+.reveal-on-scroll {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.2, 1, 0.3, 1), 
+              transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* When the Class 'is-visible' is added via JS, it floats up */
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Subtle zoom for hero image */
+/* 2. Stagger Delays (So items don't appear all at once) */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* 3. Hero Animation (Kept yours, just refined) */
 .animate-slow-zoom {
   animation: slowZoom 20s ease-out infinite alternate;
 }
 
+.fade-in-up {
+  animation: fadeInUp 1.5s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+
 @keyframes slowZoom {
   from { transform: scale(1); }
-  to { transform: scale(1.1); }
+  to { transform: scale(1.15); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 4. Luxury Hover Effects for Team/Cards */
+.hover-lift {
+  transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.group:hover .hover-lift {
+  transform: translateY(-5px);
 }

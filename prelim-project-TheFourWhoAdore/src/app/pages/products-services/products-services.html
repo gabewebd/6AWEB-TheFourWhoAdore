@@ -1,1 +1,99 @@
-<p>products-services works!</p>
+<section class="bg-white font-display text-primary min-h-screen">
+  <div class="max-w-[1400px] mx-auto px-6 py-24">
+    
+    <div class="text-center mb-16 relative">
+      <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-3 block">Discover</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium font-serif leading-tight tracking-tight text-black italic mb-2">The Collection</h2>
+      <div class="w-16 h-[1px] bg-black mx-auto mb-6"></div>
+      <p class="text-gray-500 max-w-xl mx-auto font-light leading-relaxed">
+        An exclusive curation of iconic fragrances, revitalizing skincare, and timeless accessories.
+      </p>
+    </div>
+
+    <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 border-b border-gray-100 pb-6">
+      
+      <div class="flex flex-wrap justify-center gap-12">
+        <button *ngFor="let cat of categories" 
+                (click)="filterCategory(cat)"
+                [class.text-black]="activeCategory === cat"
+                [class.font-bold]="activeCategory === cat"
+                [class.text-gray-400]="activeCategory !== cat"
+                class="text-xs uppercase tracking-[0.15em] hover:text-black transition-colors">
+          {{ cat }}
+        </button>
+      </div>
+
+      <div class="relative">
+        <select (change)="onSortChange($event)" 
+                class="appearance-none bg-transparent text-xs uppercase tracking-[0.15em] font-bold pr-8 py-2 focus:outline-none cursor-pointer">
+          <option value="featured">Featured</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+        <span class="material-symbols-outlined absolute right-0 top-1.5 text-[16px] pointer-events-none">
+          expand_more
+        </span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16">
+      
+      <div *ngFor="let product of filteredProducts" class="group relative flex flex-col">
+        
+        <div class="relative overflow-hidden bg-gray-50 mb-6 aspect-[4/5] w-full">
+          
+          <span *ngIf="product.badge" 
+                class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-widest z-10">
+            {{ product.badge }}
+          </span>
+
+          <button class="absolute top-3 right-3 z-10 p-2 rounded-full hover:bg-white transition-colors duration-300 group/heart">
+            <span class="material-symbols-outlined text-[20px] text-gray-600 group-hover/heart:text-red-600 transition-colors">
+              favorite
+            </span>
+          </button>
+
+          <img 
+            [src]="product.image" 
+            [alt]="product.name" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+          >
+          
+          <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+            <button class="w-full bg-primary text-white py-4 text-xs uppercase tracking-[0.15em] font-bold hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+              <span>Add to Bag</span>
+              <span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="text-center flex-1 flex flex-col">
+          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">
+            {{ product.category }}
+          </p>
+          
+          <h3 class="font-serif text-xl text-primary mb-2 group-hover:underline underline-offset-4 decoration-1 decoration-gray-300 transition-all">
+            {{ product.name }}
+          </h3>
+          
+          <p class="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed px-4 hidden md:block">
+            {{ product.desc }}
+          </p>
+          
+          <div class="mt-auto">
+            <span class="font-serif text-lg text-primary">
+              {{ product.price | currency:'USD' }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+    <div *ngIf="filteredProducts.length === 0" class="text-center py-20">
+      <p class="font-serif text-xl">No products found in this category.</p>
+      <button (click)="filterCategory('All')" class="mt-4 text-xs uppercase tracking-widest border-b border-black">View All</button>
+    </div>
+
+  </div>
+</section>
