@@ -10,7 +10,8 @@
         "ignore": [
           "-webkit-font-feature-settings",
           "scrollbar-width",
-          "backdrop-filter"
+          "backdrop-filter",
+          "-webkit-mask"
         ]
       }
     ],
