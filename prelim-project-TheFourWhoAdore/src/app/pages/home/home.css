@@ -1,0 +1,47 @@
+:host {
+  display: block;
+}
+
+/* --- THE "IGLOO" SCROLL ANIMATION --- */
+.reveal-item {
+  opacity: 0.3; /* Visible but faded */
+  transform: scale(0.75) translateY(100px); /* Small & Pushed down */
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.visible {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important; /* Full size */
+}
+
+/* --- HERO ANIMATIONS --- */
+.animate-slide-up {
+  animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.delay-100 { animation-delay: 0.2s; }
+.delay-200 { animation-delay: 0.4s; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- MARQUEE --- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+
+/* --- FONTS --- */
+.font-display { font-family: 'Manrope', sans-serif; }
+.font-serif { font-family: 'Bodoni Moda', serif; }
