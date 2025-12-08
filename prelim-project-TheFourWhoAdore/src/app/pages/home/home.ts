@@ -14,6 +14,8 @@ export class Home implements AfterViewInit {
   heroImage = 'assets/home-chanel.jpg';
   scrollY = 0;
 
+  bannerImage = 'https://t3.ftcdn.net/jpg/15/32/09/72/360_F_1532097278_kIgidE5vSO1olWdftSApbjdFYZsf1Xhi.jpg';
+
   collections = [
     {
       title: 'Ready-to-Wear',
