@@ -1,8 +1,30 @@
-/* Header Styles */
-.layout-container {
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
   width: 100%;
 }
 
+.hamburger-btn {
+  display: flex !important; 
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  z-index: 100;
+  color: #111218; 
+}
+
+@media (min-width: 768px) {
+  .hamburger-btn {
+    display: none !important;
+  }
+}
+
 header {
-  background-color: white !important;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }

@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.css',
 })
 export class Header {
-
+  isMenuOpen: boolean = false; 
 }

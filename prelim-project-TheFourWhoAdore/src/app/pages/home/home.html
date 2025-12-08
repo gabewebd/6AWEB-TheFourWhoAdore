@@ -42,9 +42,11 @@
               class="relative z-10 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
               alt="{{item.title}}"
             />
-            <div class="absolute inset-0 z-20 bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+          <div class="absolute inset-0 z-20 bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+            <a routerLink="/products-services">
               <span class="text-3xl font-display tracking-widest border-b-2 border-black pb-2 text-black font-bold">VIEW</span>
-            </div>
+            </a>
+          </div>
           </div>
 
           <div class="w-full md:w-2/5 flex flex-col gap-6 text-center md:text-left"
@@ -98,10 +100,10 @@
         <p class="text-gray-600 text-lg font-light leading-relaxed max-w-md font-body">
           {{ highlight.description }}
         </p>
-        <button class="group flex items-center gap-4 text-xs font-bold uppercase tracking-widest hover:text-black transition-colors font-body mt-4 text-gray-500">
-          <span class="w-12 h-px bg-gray-400 group-hover:w-20 group-hover:bg-black transition-all duration-300"></span>
-          Watch the Show
-        </button>
+      <a href="https://youtu.be/xK6rWSfF0io?si=JQ5qxKOFzhHG_JMr" target="_blank" class="group flex items-center gap-4 text-xs font-bold uppercase tracking-widest hover:text-black transition-colors font-body mt-4 text-gray-500">
+        <span class="w-12 h-px bg-gray-400 group-hover:w-20 group-hover:bg-black transition-all duration-300"></span>
+        Watch the Show
+      </a>
       </div>
 
       <div #revealItem class="reveal-item relative aspect-[4/3] w-full overflow-hidden order-1 lg:order-2 shadow-xl">
@@ -140,10 +142,12 @@
     
 
       <div class="mt-4">
+        <a routerLink="/about">
         <button 
           class="px-10 py-4 text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-white hover:text-black transition-all duration-300 border border-white hover:border-black font-body ">
           Read Our Story
         </button>
+        </a>
       </div>
     </div>
   </div>

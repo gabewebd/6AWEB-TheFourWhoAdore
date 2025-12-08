@@ -1,31 +1,46 @@
-<header class="sticky top-0 z-50 bg-white backdrop-blur-sm border-b border-[#e5e5e5]">
+<header class="sticky top-0 z-50 bg-white border-b border-black h-auto w-full">
+  
   <div class="layout-container flex justify-center w-full">
-    <div class="flex flex-1 flex-col max-w-[1440px] px-4 md:px-10 py-4">
-      <div class="flex items-center justify-between whitespace-nowrap">
-        <div class="flex items-center gap-8">
-          <button class="md:hidden p-2 text-[#111218]">
-            <span class="material-symbols-outlined">menu</span>
-          </button>
+    <div class="flex flex-1 flex-col max-w-[1440px] px-4 md:px-10 py-4 h-full">
+      
+      <div class="header-nav"> 
+        
+        <div class="flex items-center gap-4 md:gap-8">
           
           <a routerLink="/home" class="flex items-center text-[#111218] group">
-            <img 
-              src="https://www.dafont.com/forum/attach/orig/1/2/125536.png" 
-              alt="Chanel CC Logo" 
+            <img
+              src="https://www.dafont.com/forum/attach/orig/1/2/125536.png"
+              alt="Chanel CC Logo"
               class="w-8 h-8 object-contain"
             />
           </a>
+
           <div class="hidden md:flex items-center gap-8 ml-4">
-            <a routerLink="/home" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] hover:text-gray-500 transition-colors uppercase" style="font-family: 'Manrope', sans-serif;">Home</a>
-            <a routerLink="/products-services" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] hover:text-gray-500 transition-colors uppercase" style="font-family: 'Manrope', sans-serif;">Products</a>
-            <a routerLink="/employees" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] hover:text-gray-500 transition-colors uppercase" style="font-family: 'Manrope', sans-serif;">Directory</a>
-            <a routerLink="/about" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] hover:text-gray-500 transition-colors uppercase" style="font-family: 'Manrope', sans-serif;">About</a>
+            <a routerLink="/home" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] uppercase">Home</a>
+            <a routerLink="/products-services" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] uppercase">Products</a>
+            <a routerLink="/employees" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] uppercase">Directory</a>
+            <a routerLink="/about" routerLinkActive="border-b border-black pb-0.5" class="text-[#111218] text-xs font-bold tracking-[0.1em] uppercase">About</a>
           </div>
         </div>
-        <div class="flex items-center justify-end gap-6">
-          <label class="hidden lg:flex flex-col min-w-40 h-10 w-64">
-          </label>
+        
+        <div class="md:hidden flex items-center">
+            <button (click)="isMenuOpen = !isMenuOpen" class="hamburger-btn">
+                <span class="material-symbols-outlined" style="color: black; font-size: 24px;">
+                   {{ isMenuOpen ? 'close' : 'menu' }}
+                </span>
+            </button>
         </div>
+
       </div>
+
+      @if (isMenuOpen) {
+        <div class="md:hidden flex flex-col pt-6 pb-6 space-y-6 border-t border-[#e5e5e5] mt-4 bg-white w-full animate-fade-in-down">
+          <a routerLink="/home" (click)="isMenuOpen = false" class="text-[#111218] text-lg font-bold tracking-widest uppercase pl-2 border-l-2 border-transparent hover:border-black">Home</a>
+          <a routerLink="/products-services" (click)="isMenuOpen = false" class="text-[#111218] text-lg font-bold tracking-widest uppercase pl-2 border-l-2 border-transparent hover:border-black">Products</a>
+          <a routerLink="/employees" (click)="isMenuOpen = false" class="text-[#111218] text-lg font-bold tracking-widest uppercase pl-2 border-l-2 border-transparent hover:border-black">Directory</a>
+          <a routerLink="/about" (click)="isMenuOpen = false" class="text-[#111218] text-lg font-bold tracking-widest uppercase pl-2 border-l-2 border-transparent hover:border-black">About</a>
+        </div>
+      }
     </div>
   </div>
 </header>

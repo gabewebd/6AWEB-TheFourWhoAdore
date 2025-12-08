@@ -22,23 +22,101 @@
   background-image: var(--bg-image);
 }
 
-/* --- Card Hover Effects --- */
-.group {
-  backface-visibility: hidden;
-  position: relative; 
+/* --- Enhanced Card Hover Effects --- */
+.employee-card {
+  position: relative;
   z-index: 1;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-.group:hover {
+.employee-card:hover {
   z-index: 10;
+  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Animations --- */
+.employee-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.125rem;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.employee-card:hover::before {
+  opacity: 1;
+}
+
+/* --- Filter Button Enhancement --- */
+.filter-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease-out, height 0.6s ease-out;
+}
+
+.filter-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.filter-button:active {
+  transform: scale(0.96);
+}
+
+/* --- Sort Dropdown Enhancement --- */
+.sort-dropdown {
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Card Grid Stagger Animation --- */
+.employee-card-wrapper {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.employee-card-wrapper:nth-child(1) { animation-delay: 0.05s; }
+.employee-card-wrapper:nth-child(2) { animation-delay: 0.1s; }
+.employee-card-wrapper:nth-child(3) { animation-delay: 0.15s; }
+.employee-card-wrapper:nth-child(4) { animation-delay: 0.2s; }
+.employee-card-wrapper:nth-child(5) { animation-delay: 0.25s; }
+.employee-card-wrapper:nth-child(6) { animation-delay: 0.3s; }
+.employee-card-wrapper:nth-child(7) { animation-delay: 0.35s; }
+.employee-card-wrapper:nth-child(8) { animation-delay: 0.4s; }
+.employee-card-wrapper:nth-child(n+9) { animation-delay: 0.45s; }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -46,16 +124,52 @@
   }
 }
 
-.animate-enter {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* --- Status Pulse Animation --- */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
 }
 
-/* Simple fade in for dropdowns */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.2s ease-out forwards;
+/* --- Mail Button Enhancement --- */
+.employee-card a[href^="mailto"] {
+  backdrop-filter: blur(10px);
+}
+
+.employee-card a[href^="mailto"]:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.employee-card a[href^="mailto"]:active {
+  transform: scale(0.95) rotate(0deg);
+}
+
+/* --- Image Filters on Hover --- */
+.employee-card:hover .employee-photo {
+  filter: brightness(1.05) contrast(1.05);
+}
+
+/* --- Smooth transitions for department filter changes --- */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.employee-card-wrapper.filtering-out {
+  animation: fadeOut 0.3s ease-out forwards;
 }
