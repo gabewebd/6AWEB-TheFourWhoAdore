@@ -1,1 +1,123 @@
-<p>about works!</p>
+<main class="flex-1 flex flex-col items-center w-full bg-white">
+  
+  <div class="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-black/30 z-10"></div>
+    <img 
+      src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop" 
+      alt="Fashion Runway" 
+      class="absolute inset-0 w-full h-full object-cover animate-slow-zoom"
+    />
+    <div class="relative z-20 text-center text-white px-6 fade-in-up">
+      <span class="block text-xs md:text-sm font-bold uppercase tracking-[0.3em] mb-4 opacity-90 font-body">Est. 2025</span>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium font-display leading-none">
+        The Four <br/> Who Adore
+      </h1>
+    </div>
+  </div>
+
+  <div class="w-full max-w-[1400px] flex flex-col px-6 lg:px-20 py-20 md:py-32 gap-24 md:gap-32">
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-5 order-2 md:order-1">
+        <div class="aspect-[3/4] overflow-hidden bg-gray-100 group">
+          <img 
+            src="https://images.unsplash.com/photo-1548625149-fc4a29cf7092?q=80&w=1000&auto=format&fit=crop" 
+            alt="Minimalist Architecture" 
+            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+          />
+        </div>
+      </div>
+      <div class="md:col-span-7 order-1 md:order-2 flex flex-col gap-8 md:pl-10">
+        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest font-body">The Vision</span>
+        <h2 class="text-4xl md:text-6xl font-display text-black leading-tight">
+          Where Elegance <br/> Meets Innovation.
+        </h2>
+        <div class="w-16 h-px bg-black"></div>
+        <p class="font-body text-gray-600 text-lg leading-relaxed text-justify">
+          Fashion passes, style remains. Our mission is to encapsulate the spirit of Gabrielle Chanel—a spirit of freedom, passion, and feminine allure. "The Four Who Adore" represents our collective adoration for the artistry, the detail, and the unyielding standard of perfection that the brand embodies.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center gap-16">
+      <div class="text-center max-w-2xl">
+        <h2 class="text-3xl md:text-4xl font-display text-black mb-4">Our Codes</h2>
+        <p class="text-gray-500 font-body">The principles that define our digital atelier.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+        @for (value of values; track value.title) {
+          <div class="flex flex-col items-center text-center p-8 border border-gray-100 hover:border-black transition-colors duration-300 group">
+            <span class="material-symbols-outlined text-4xl mb-6 text-gray-400 group-hover:text-black transition-colors">
+              {{ value.icon }}
+            </span>
+            <h3 class="text-xl font-display mb-3">{{ value.title }}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed font-body">{{ value.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+
+  <div class="w-full bg-[#111218] text-white py-24 px-6">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="flex flex-col gap-8">
+        <span class="text-xs font-bold uppercase tracking-widest text-gray-500 font-body">Savoir-Faire</span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-display leading-tight">
+          The Art of <br/> Detail
+        </h2>
+        <p class="text-gray-400 font-body text-lg font-light leading-relaxed">
+          Behind every line of code lies a dedication to craftsmanship comparable to the haute couture ateliers of Paris. We weave technology with tradition to create seamless experiences.
+        </p>
+        <button class="self-start mt-4 px-8 py-3 border border-white/30 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300 font-body">
+          Explore The Process
+        </button>
+      </div>
+      <div class="relative h-[500px] w-full overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=2000&auto=format&fit=crop" 
+          alt="Sewing Detail" 
+          class="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full max-w-[1400px] px-6 lg:px-20 py-24 md:py-32">
+    <div class="flex flex-col items-center gap-4 mb-20">
+      <h2 class="text-4xl md:text-5xl font-display text-center">The Curators</h2>
+      <div class="w-12 h-0.5 bg-black"></div>
+      <p class="text-gray-500 font-body mt-2 text-center">Behind the scenes of the maison.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+      @for (member of teamMembers; track member.name) {
+        <div class="flex flex-col group cursor-pointer">
+          <div class="aspect-[3/4] overflow-hidden bg-gray-100 relative mb-6">
+            <img 
+              [src]="member.image" 
+              [alt]="member.name" 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+            />
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+          </div>
+          <div class="text-center flex flex-col gap-1">
+            <h3 class="text-lg font-display text-black">{{ member.name }}</h3>
+            <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 font-body">{{ member.role }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="w-full bg-gray-50 py-24 px-6 text-center border-t border-gray-200">
+    <blockquote class="font-display text-2xl md:text-4xl max-w-4xl mx-auto leading-normal italic text-gray-900">
+      "In order to be irreplaceable one must always be different."
+    </blockquote>
+    <cite class="block mt-8 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 font-body not-italic">
+      — Gabrielle Chanel
+    </cite>
+  </div>
+
+</main>
