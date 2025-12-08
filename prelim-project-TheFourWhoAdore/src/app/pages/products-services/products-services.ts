@@ -25,9 +25,13 @@ export class ProductsServices {
   
   // 2. Track current selections
   activeCategory: string = 'All';
-  currentSort: string = 'featured';
+  currentSort: string = 'Featured'; // Display text
+  currentSortValue: string = 'featured'; // Internal value
+  
+  // 3. Dropdown state
+  showSortDropdown: boolean = false;
 
-  // 3. This is the Master List (The Data)
+  // 4. This is the Master List (The Data)
   products: Product[] = [
     {
       id: 1,
@@ -169,12 +173,17 @@ export class ProductsServices {
     }
   ];
 
-  // 4. This is the Display List (What users see)
+  // 5. This is the Display List (What users see)
   filteredProducts: Product[] = [];
 
   constructor() {
     // Initialize the view with all products
     this.filteredProducts = [...this.products];
+  }
+
+  // Toggle dropdown visibility
+  toggleSortDropdown() {
+    this.showSortDropdown = !this.showSortDropdown;
   }
 
   // LOGIC: Filter by Category
@@ -183,9 +192,24 @@ export class ProductsServices {
     this.applyFilters();
   }
 
-  // LOGIC: Sort by Price
-  onSortChange(event: any) {
-    this.currentSort = event.target.value;
+  // LOGIC: Sort by Price (Updated for custom dropdown)
+  onSortChange(value: string) {
+    // Update display text
+    if (value === 'featured') {
+      this.currentSort = 'Featured';
+    } else if (value === 'low-high') {
+      this.currentSort = 'Low to High';
+    } else if (value === 'high-low') {
+      this.currentSort = 'High to Low';
+    }
+    
+    // Update internal value
+    this.currentSortValue = value;
+    
+    // Close dropdown
+    this.showSortDropdown = false;
+    
+    // Apply filters
     this.applyFilters();
   }
 
@@ -202,9 +226,9 @@ export class ProductsServices {
     }
 
     // 2. Sort
-    if (this.currentSort === 'low-high') {
+    if (this.currentSortValue === 'low-high') {
       this.filteredProducts.sort((a, b) => a.price - b.price);
-    } else if (this.currentSort === 'high-low') {
+    } else if (this.currentSortValue === 'high-low') {
       this.filteredProducts.sort((a, b) => b.price - a.price);
     } 
     // If 'featured', we don't sort (keeps default ID order)

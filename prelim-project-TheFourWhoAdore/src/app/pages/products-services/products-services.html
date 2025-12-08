@@ -23,16 +23,47 @@
         </button>
       </div>
 
-      <div class="relative">
-        <select (change)="onSortChange($event)" 
-                class="appearance-none bg-transparent text-xs uppercase tracking-[0.15em] font-bold pr-8 py-2 focus:outline-none cursor-pointer">
-          <option value="featured">Featured</option>
-          <option value="low-high">Price: Low to High</option>
-          <option value="high-low">Price: High to Low</option>
-        </select>
-        <span class="material-symbols-outlined absolute right-0 top-1.5 text-[16px] pointer-events-none">
-          expand_more
-        </span>
+      <!-- Updated Custom Dropdown -->
+      <div class="flex items-center gap-2 shrink-0 relative">
+        <span class="text-xs font-bold uppercase tracking-[0.15em] text-gray-400">Sort By:</span>
+        
+        <button 
+          (click)="toggleSortDropdown()"
+          class="flex items-center gap-1 text-xs font-bold uppercase tracking-[0.15em] hover:text-black transition-colors">
+          {{ currentSort }} 
+          <span class="material-symbols-outlined text-sm transition-transform duration-300"
+                [class.rotate-180]="showSortDropdown">
+            expand_more
+          </span>
+        </button>
+
+        <div *ngIf="showSortDropdown" 
+             class="sort-dropdown absolute right-0 top-full mt-2 w-40 bg-white border border-gray-200 shadow-xl z-10">
+          <button 
+            (click)="onSortChange('featured')"
+            class="block w-full text-left px-4 py-2.5 text-xs font-bold uppercase tracking-[0.15em] hover:bg-black hover:text-white transition-all duration-300"
+            [class.bg-black]="currentSort === 'Featured'"
+            [class.text-white]="currentSort === 'Featured'"
+            [class.text-gray-600]="currentSort !== 'Featured'">
+            Featured
+          </button>
+          <button 
+            (click)="onSortChange('low-high')"
+            class="block w-full text-left px-4 py-2.5 text-xs font-bold uppercase tracking-[0.15em] hover:bg-black hover:text-white transition-all duration-300"
+            [class.bg-black]="currentSort === 'Low to High'"
+            [class.text-white]="currentSort === 'Low to High'"
+            [class.text-gray-600]="currentSort !== 'Low to High'">
+            Low to High
+          </button>
+          <button 
+            (click)="onSortChange('high-low')"
+            class="block w-full text-left px-4 py-2.5 text-xs font-bold uppercase tracking-[0.15em] hover:bg-black hover:text-white transition-all duration-300"
+            [class.bg-black]="currentSort === 'High to Low'"
+            [class.text-white]="currentSort === 'High to Low'"
+            [class.text-gray-600]="currentSort !== 'High to Low'">
+            High to Low
+          </button>
+        </div>
       </div>
     </div>
 
@@ -88,7 +119,7 @@
         </div>
 
       </div>
-      </div>
+    </div>
 
     <div *ngIf="filteredProducts.length === 0" class="text-center py-20">
       <p class="font-serif text-xl">No products found in this category.</p>
