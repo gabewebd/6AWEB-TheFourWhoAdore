@@ -9,6 +9,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   styleUrl: './about.css',
 })
 export class About implements AfterViewInit {
+
+   bannerImage = 'https://t3.ftcdn.net/jpg/15/32/09/72/360_F_1532097278_kIgidE5vSO1olWdftSApbjdFYZsf1Xhi.jpg';
   
   // existing data...
   teamMembers = [

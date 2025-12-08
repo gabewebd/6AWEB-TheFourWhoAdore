@@ -1,0 +1,51 @@
+/* 1. Layout Container */
+.error-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+/* 2. Button Styling (Luxury Style) */
+.home-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border: 1px solid #000000;
+  background-color: transparent;
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.home-button:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* 3. Animation */
+.fade-in {
+  animation: fadeInUp 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
